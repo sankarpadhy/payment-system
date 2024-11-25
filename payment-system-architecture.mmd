@@ -1,106 +1,103 @@
-graph TD
-    %% CLIENT ACCESS LAYER
-    subgraph CL[CLIENT ACCESS LAYER]
-        MP[Mobile Payment<br/>React Native/Flutter<br/>- iOS/Android<br/>- Payment UI<br/>- Secure Storage] 
-        PT[POS Terminal<br/>Spring Boot/JavaPOS<br/>- EMV Processing<br/>- Card Present<br/>- Receipt Print]
-        WP[Web Payment<br/>Next.js/React<br/>- Checkout<br/>- Payment Form<br/>- Card Tokenize]
-        SP[Smart POS<br/>Spring Boot/Android SDK<br/>- Android POS<br/>- Linux POS<br/>- mPOS Support]
-    end
-
-    %% CHANNEL INTEGRATION LAYER
-    subgraph CI[CHANNEL INTEGRATION LAYER]
-        MS[Mobile SDK<br/>Native SDK/WebView<br/>- Secure Comm.<br/>- Encryption]
-        PI[POS Integration<br/>JavaPOS/OPOS<br/>- Terminal Mgmt<br/>- Hardware Intg]
-        PS[Payment SDK<br/>JavaScript/WebSocket<br/>- JS Library<br/>- Tokenization]
-        TS[Terminal SDK<br/>Android SDK/Native<br/>- Device Mgmt<br/>- Firmware Update]
-    end
-
-    %% EXTERNAL PAYMENT ECOSYSTEM
-    subgraph EP[EXTERNAL PAYMENT ECOSYSTEM]
-        CN[Card Networks<br/>Visa/MC]
-        DW[Digital Wallets<br/>Apple/Google]
-        BS[Banking Systems<br/>SWIFT/ACH]
-        AP[Alternative Payments<br/>Crypto/BNPL]
-    end
-
-    %% PAYMENT GATEWAY LAYER
-    subgraph PG[PAYMENT GATEWAY & INTEGRATION]
-        GW[Payment Gateway<br/>Spring Boot/Camel<br/>- Protocol Handler<br/>- Routing Logic]
-        NI[Card Network Interface<br/>Custom/Socket.io<br/>- ISO8583<br/>- Socket Conn.]
-        BI[Bank Integration<br/>Spring Int./Camel<br/>- ISO20022<br/>- SWIFT/ACH]
-        WI[Wallet Integration<br/>Payment SDK/REST<br/>- SDK/API<br/>- OAuth Flow]
-    end
-
-    %% SECURITY & COMPLIANCE LAYER
-    subgraph SC[SECURITY & COMPLIANCE]
-        AG[API Gateway<br/>Kong/Istio<br/>- Rate Limiting<br/>- Load Balance]
-        AU[Authentication<br/>Keycloak<br/>- OAuth/OIDC<br/>- MFA]
-        EN[Encryption<br/>Vault/HSM<br/>- Key Mgmt<br/>- Tokenization]
-        CO[Compliance<br/>Custom/Vanta<br/>- PCI DSS<br/>- KYC/AML]
-    end
-
-    %% CORE PAYMENT SERVICES LAYER
-    subgraph CP[CORE PAYMENT SERVICES]
-        PO[Payment Orchestrator<br/>Spring Cloud/K8s<br/>- Payment Flow<br/>- Routing]
-        TP[Transaction Processor<br/>Spring Boot/SAGA<br/>- State Machine<br/>- ACID]
-        FD[Fraud Detection<br/>TensorFlow/Spring<br/>- ML Models<br/>- Rules Engine]
-        RM[Risk Management<br/>Spring Boot/ML<br/>- Scoring<br/>- Rules]
-    end
-
-    %% BUSINESS SERVICES LAYER
-    subgraph BS[BUSINESS SERVICES]
-        MM[Merchant Management<br/>Spring Boot/PostgreSQL<br/>- Onboarding<br/>- Configuration]
-        CM[Customer Management<br/>Spring Boot/MongoDB<br/>- Profile<br/>- Preferences]
-        SS[Settlement Service<br/>Spring Batch/Quartz<br/>- Batch Process<br/>- Fee Calc]
-        RS[Reconciliation Service<br/>Spring Boot/Spark<br/>- Matching<br/>- Reports]
-    end
-
-    %% DATA PERSISTENCE LAYER
-    subgraph DP[DATA PERSISTENCE]
-        TD[Transaction DB<br/>PostgreSQL/TimescaleDB<br/>- ACID<br/>- Sharding]
-        CD[Customer DB<br/>MongoDB/Cassandra<br/>- Document Store<br/>- Scalable]
-        MD[Merchant DB<br/>PostgreSQL/MySQL<br/>- Relational<br/>- Consistent]
-        AD[Audit DB<br/>Elasticsearch/TimescaleDB<br/>- Time Series<br/>- Immutable]
-    end
-
-    %% MESSAGING & CACHING LAYER
-    subgraph MC[MESSAGING & CACHING]
-        ES[Event Stream<br/>Apache Kafka/EventStore<br/>- Real-time<br/>- Event Source]
-        MQ[Message Queue<br/>RabbitMQ/ActiveMQ<br/>- Async<br/>- Reliable]
-        CS[Cache Service<br/>Redis Cluster/Hazelcast<br/>- Data Cache<br/>- Response Cache]
-        ST[State Store<br/>Redis/etcd<br/>- Session<br/>- Distributed]
-    end
-
-    %% MONITORING & OPERATIONS LAYER
-    subgraph MO[MONITORING & OPERATIONS]
-        SM[System Monitor<br/>Prometheus/Grafana<br/>- Metrics<br/>- Health Check]
-        TM[Transaction Monitor<br/>Datadog/New Relic<br/>- Performance<br/>- Tracing]
-        LA[Log Analytics<br/>ELK Stack/Splunk<br/>- Centralized<br/>- Searchable]
-        AL[Alerting<br/>PagerDuty/OpsGenie<br/>- Real-time<br/>- Escalation]
-    end
-
-    %% DEVOPS & DEPLOYMENT LAYER
-    subgraph DD[DEVOPS & DEPLOYMENT]
-        CD[CI/CD Pipeline<br/>Jenkins/GitLab<br/>- Build/Test<br/>- Deploy]
-        CO[Container Orchestration<br/>Kubernetes/Docker<br/>- Orchestration<br/>- Scaling]
-        CM[Config Manager<br/>Spring Cloud/Consul<br/>- App Config<br/>- Secrets]
-        IN[Infrastructure<br/>Terraform/Ansible<br/>- Cloud Infra<br/>- Network]
-    end
-
-    %% Layer Connections
-    CL --> CI
-    CI --> EP
-    EP --> PG
-    PG --> SC
-    SC --> CP
-    CP --> BS
-    BS --> DP
-    DP --> MC
-    MC --> MO
-    MO --> DD
-
-    %% Cross-layer Dependencies
-    CP -.-> MC
-    BS -.-> MC
-    SC -.-> MO
-    PG -.-> MO
+                    CLIENT ACCESS LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| Mobile Payment   |       | POS Terminal     |       | Web Payment      |       | Smart POS        |
+| - iOS/Android    |       | - EMV Processing |       | - Checkout       |       | - Android POS    |
+| - Payment UI     |       | - Card Present   |       | - Payment Form   |       | - Linux POS      |
+| - Secure Storage |       | - Receipt Print  |       | - Card Tokenize  |       | - mPOS Support   |
+| (React Native/   |       | (Spring Boot/    |       | (Next.js/        |       | (Spring Boot/    |
+|  Flutter)        |       |  JavaPOS)        |       |  React)          |       |  Android SDK)    |
++------------------+       +------------------+       +------------------+       +------------------+
+                ↓                    ↓                    ↓                    ↓
+                    CHANNEL INTEGRATION LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| Mobile SDK       |       | POS Integration  |       | Payment SDK      |       | Terminal SDK     |
+| - Secure Comm.   |       | - Terminal Mgmt  |       | - JS Library     |       | - Device Mgmt    |
+| - Encryption     |       | - Hardware Intg  |       | - Tokenization   |       | - Firmware Update|
+| (Native SDK/     |       | (JavaPOS/        |       | (JavaScript/     |       | (Android SDK/    |
+|  WebView)        |       |  OPOS)           |       |  WebSocket)      |       |  Native Code)    |
++------------------+       +------------------+       +------------------+       +------------------+
+                ↓                    ↓                    ↓                    ↓
+                                        EXTERNAL PAYMENT ECOSYSTEM
++----------------------------------------------------------------------------------------+
+|  Card Networks  |  Digital Wallets  |  Banking Systems  |  Alternative Payment Methods  |
+|  (Visa/MC)     |  (Apple/Google)   |  (SWIFT/ACH)      |  (Crypto/BNPL)               |
++----------------------------------------------------------------------------------------+
+                                            ↓
+                    PAYMENT GATEWAY & EXTERNAL INTEGRATION LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| Payment Gateway  |       | Card Network     |       | Bank Integration|       | Wallet           |
+| Integration      |       | Interface        |       | Service         |       | Integration      |
+| - Protocol Hand. |       | - ISO8583        |       | - ISO20022      |       | - SDK/API        |
+| - Routing Logic  |       | - Socket Conn.   |       | - SWIFT/ACH     |       | - OAuth Flow     |
+| (Spring Boot/    |       | (Custom/         |       | (Spring Int./   |       | (Payment SDK/    |
+|  Apache Camel)   |       |  Socket.io)      |       |  Camel)         |       |  REST APIs)      |
++------------------+       +------------------+       +------------------+       +------------------+
+                                            ↓
+                    SECURITY & COMPLIANCE LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| API Gateway      |       | Authentication   |       | Encryption       |       | Compliance      |
+| - Rate Limiting  |       | - OAuth/OIDC     |       | - HSM            |       | - PCI DSS       |
+| - Load Balance   |       | - MFA            |       | - Key Mgmt       |       | - KYC/AML       |
+| - Routing        |       | - JWT            |       | - Tokenization   |       | - GDPR          |
+| (Kong/Istio)     |       | (Keycloak)       |       | (Vault/HSM)      |       | (Custom/Vanta)  |
++------------------+       +------------------+       +------------------+       +------------------+
+                                            ↓
+                    CORE PAYMENT SERVICES LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| Payment          |       | Transaction      |       | Fraud Detection |       | Risk Management |
+| Orchestrator     |       | Processor        |       | Service         |       | Service         |
+| - Payment Flow   |       | - State Machine  |       | - ML Models     |       | - Scoring       |
+| - Routing        |       | - ACID           |       | - Rules Engine  |       | - Rules         |
+| (Spring Cloud/   |       | (Spring Boot/    |       | (TensorFlow/    |       | (Spring Boot/   |
+|  Kubernetes)     |       |  SAGA Pattern)   |       |  Spring Boot)   |       |  ML Models)     |
++------------------+       +------------------+       +------------------+       +------------------+
+                                            ↓
+                    BUSINESS SERVICES LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| Merchant         |       | Customer         |       | Settlement       |       | Reconciliation  |
+| Management       |       | Management       |       | Service          |       | Service         |
+| - Onboarding     |       | - Profile        |       | - Batch Process  |       | - Matching      |
+| - Configuration  |       | - Preferences    |       | - Fee Calc       |       | - Reports       |
+| (Spring Boot/    |       | (Spring Boot/    |       | (Spring Batch/   |       | (Spring Boot/   |
+|  PostgreSQL)     |       |  MongoDB)        |       |  Quartz)         |       |  Apache Spark)  |
++------------------+       +------------------+       +------------------+       +------------------+
+                                            ↓
+                    DATA PERSISTENCE LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| Transaction DB   |       | Customer DB      |       | Merchant DB      |       | Audit DB        |
+| - ACID           |       | - Document Store |       | - Relational     |       | - Time Series   |
+| - Sharding       |       | - Scalable      |       | - Consistent     |       | - Immutable     |
+| - Replication    |       | - Flexible      |       | - Reliable       |       | - Searchable    |
+| (PostgreSQL/     |       | (MongoDB/        |       | (PostgreSQL/     |       | (Elasticsearch/ |
+|  TimescaleDB)    |       |  Cassandra)      |       |  MySQL)          |       |  TimescaleDB)   |
++------------------+       +------------------+       +------------------+       +------------------+
+                                            ↓
+                    MESSAGING & CACHING LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| Event Stream     |       | Message Queue    |       | Cache Service    |       | State Store     |
+| - Real-time      |       | - Async         |       | - Data Cache     |       | - Session       |
+| - Event Source   |       | - Reliable      |       | - Response Cache |       | - Distributed   |
+| - Stream Process |       | - Durable       |       | - Rate Limit     |       | - Reliable      |
+| (Apache Kafka/   |       | (RabbitMQ/      |       | (Redis Cluster/  |       | (Redis/         |
+|  Event Store)    |       |  ActiveMQ)      |       |  Hazelcast)      |       |  etcd)          |
++------------------+       +------------------+       +------------------+       +------------------+
+                                            ↓
+                    MONITORING & OPERATIONS LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| System Monitor   |       | Transaction      |       | Log Analytics    |       | Alerting        |
+| - Metrics        |       | Monitor          |       | - Centralized   |       | - Real-time     |
+| - Health Check   |       | - Performance    |       | - Searchable    |       | - Escalation    |
+| - Dashboard      |       | - Tracing        |       | - Analyzable    |       | - On-call       |
+| (Prometheus/     |       | (Datadog/        |       | (ELK Stack/     |       | (PagerDuty/     |
+|  Grafana)        |       |  New Relic)      |       |  Splunk)        |       |  OpsGenie)      |
++------------------+       +------------------+       +------------------+       +------------------+
+                                            ↓
+                    DEVOPS & DEPLOYMENT LAYER
++------------------+       +------------------+       +------------------+       +------------------+
+| CI/CD Pipeline   |       | Container Orch   |       | Config Manager   |       | Infrastructure  |
+| - Build/Test     |       | - Orchestration  |       | - App Config    |       | - Cloud Infra   |
+| - Deploy         |       | - Scaling        |       | - Secrets       |       | - Network       |
+| - Release        |       | - Load Balance   |       | - Environment   |       | - Security      |
+| (Jenkins/        |       | (Kubernetes/     |       | (Spring Cloud/  |       | (Terraform/     |
+|  GitLab CI)      |       |  Docker)         |       |  Consul)        |       |  Ansible)       |
++------------------+       +------------------+       +------------------+       +------------------+
