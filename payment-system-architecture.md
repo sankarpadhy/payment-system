@@ -6,7 +6,7 @@ graph LR
     
     %% CLIENT ACCESS LAYER
     subgraph CL[CLIENT ACCESS LAYER]
-        direction TB
+        direction LR
         MP[Mobile Payment<br/>React Native/Flutter<br/>iOS/Android] 
         PT[POS Terminal<br/>Spring Boot/JavaPOS<br/>EMV/Card Present]
         WP[Web Payment<br/>Next.js/React<br/>Checkout/Forms]
@@ -15,7 +15,7 @@ graph LR
 
     %% CHANNEL INTEGRATION LAYER
     subgraph CI[CHANNEL INTEGRATION LAYER]
-        direction TB
+        direction LR
         MS[Mobile SDK<br/>Native/WebView<br/>Secure Comm]
         PI[POS Integration<br/>JavaPOS/OPOS<br/>Terminal Mgmt]
         PS[Payment SDK<br/>JS/WebSocket<br/>Tokenization]
@@ -24,7 +24,7 @@ graph LR
 
     %% EXTERNAL PAYMENT ECOSYSTEM
     subgraph EP[EXTERNAL PAYMENT ECOSYSTEM]
-        direction TB
+        direction LR
         CN[Card Networks<br/>Visa/MC]
         DW[Digital Wallets<br/>Apple/Google]
         BS[Banking<br/>SWIFT/ACH]
@@ -33,7 +33,7 @@ graph LR
 
     %% PAYMENT GATEWAY LAYER
     subgraph PG[PAYMENT GATEWAY & INTEGRATION]
-        direction TB
+        direction LR
         GW[Gateway<br/>Spring/Camel<br/>Protocol Handler]
         NI[Card Network<br/>ISO8583<br/>Socket Conn]
         BI[Bank Integration<br/>ISO20022<br/>SWIFT/ACH]
@@ -42,7 +42,7 @@ graph LR
 
     %% SECURITY & COMPLIANCE LAYER
     subgraph SC[SECURITY & COMPLIANCE]
-        direction TB
+        direction LR
         AG[API Gateway<br/>Kong/Istio<br/>Rate Limit/LB]
         AU[Auth Service<br/>Keycloak<br/>OAuth/MFA]
         EN[Encryption<br/>Vault/HSM<br/>Key Mgmt]
@@ -51,7 +51,7 @@ graph LR
 
     %% CORE PAYMENT SERVICES LAYER
     subgraph CP[CORE PAYMENT SERVICES]
-        direction TB
+        direction LR
         PO[Payment Orchestrator<br/>Spring Cloud/K8s]
         TP[Transaction Processor<br/>SAGA/ACID]
         FD[Fraud Detection<br/>ML/Rules Engine]
@@ -60,7 +60,7 @@ graph LR
 
     %% BUSINESS SERVICES LAYER
     subgraph BS[BUSINESS SERVICES]
-        direction TB
+        direction LR
         MM[Merchant Mgmt<br/>Spring/PostgreSQL]
         CM[Customer Mgmt<br/>Spring/MongoDB]
         SS[Settlement<br/>Spring Batch]
@@ -69,7 +69,7 @@ graph LR
 
     %% DATA PERSISTENCE LAYER
     subgraph DP[DATA PERSISTENCE]
-        direction TB
+        direction LR
         TD[Transaction DB<br/>PostgreSQL/ACID]
         CD[Customer DB<br/>MongoDB/Scalable]
         MD[Merchant DB<br/>PostgreSQL/MySQL]
@@ -78,7 +78,7 @@ graph LR
 
     %% MESSAGING & CACHING LAYER
     subgraph MC[MESSAGING & CACHING]
-        direction TB
+        direction LR
         ES[Event Stream<br/>Kafka/EventStore]
         MQ[Message Queue<br/>RabbitMQ/ActiveMQ]
         CS[Cache Service<br/>Redis/Hazelcast]
@@ -87,7 +87,7 @@ graph LR
 
     %% MONITORING & OPERATIONS LAYER
     subgraph MO[MONITORING & OPERATIONS]
-        direction TB
+        direction LR
         SM[System Monitor<br/>Prometheus/Grafana]
         TM[Transaction Monitor<br/>Datadog/NewRelic]
         LA[Log Analytics<br/>ELK/Splunk]
@@ -96,7 +96,7 @@ graph LR
 
     %% DEVOPS & DEPLOYMENT LAYER
     subgraph DD[DEVOPS & DEPLOYMENT]
-        direction TB
+        direction LR
         CD[CI/CD<br/>Jenkins/GitLab]
         CO[Container Orch<br/>K8s/Docker]
         CM[Config Mgmt<br/>Spring Cloud]
