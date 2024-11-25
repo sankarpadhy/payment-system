@@ -1,4 +1,5 @@
-                    graph TD
+```mermaid
+graph TD
     %% Style definitions
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef layer fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
@@ -122,3 +123,4 @@
 
     %% Apply styles
     class CL,CI,EP,PG,SC,CP,BS,DP,MC,MO,DD layer;
+```
