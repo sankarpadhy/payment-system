@@ -1,8 +1,36 @@
-```mermaid
 graph LR
     %% Style definitions
     classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px;
     classDef layer fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
+    
+    %% Flow Description:
+    %% Main Sequential Flow:
+    %% CL (Client Access) → CI (Channel Integration) → EP (External Payment) →
+    %% PG (Payment Gateway) → SC (Security & Compliance) → BS (Business Services) →
+    %% CP (Core Payment Services) → DP (Data Persistence) → MC (Messaging & Caching) →
+    %% MO (Monitoring & Operations) → DD (DevOps & Deployment)
+    %%
+    %% Cross-layer Dependencies:
+    %% CP (Core Payment) -.-> MC (Messaging & Caching)
+    %% BS (Business Services) -.-> MC (Messaging & Caching)
+    %% SC (Security) -.-> MO (Monitoring)
+    %% PG (Payment Gateway) -.-> MO (Monitoring)
+    %% 
+    %% Flow Description:
+    %% The payment system architecture is designed to facilitate secure and efficient payment processing.
+    %% It consists of multiple layers, each responsible for a specific function in the payment process.
+    %% The main sequential flow of the system is as follows:
+    %% 1. Client Access Layer (CL): This layer provides the interface for clients to initiate payment requests.
+    %% 2. Channel Integration Layer (CI): This layer integrates with various payment channels, such as mobile and web payments.
+    %% 3. External Payment Ecosystem (EP): This layer interacts with external payment systems, such as card networks and digital wallets.
+    %% 4. Payment Gateway Layer (PG): This layer provides a secure and reliable connection to the external payment ecosystem.
+    %% 5. Security & Compliance Layer (SC): This layer ensures the security and compliance of the payment system.
+    %% 6. Business Services Layer (BS): This layer provides business logic and services for payment processing.
+    %% 7. Core Payment Services Layer (CP): This layer provides the core payment processing functionality.
+    %% 8. Data Persistence Layer (DP): This layer stores payment data and provides data persistence.
+    %% 9. Messaging & Caching Layer (MC): This layer provides messaging and caching services for the payment system.
+    %% 10. Monitoring & Operations Layer (MO): This layer monitors and operates the payment system.
+    %% 11. DevOps & Deployment Layer (DD): This layer provides DevOps and deployment services for the payment system.
     
     %% CLIENT ACCESS LAYER
     subgraph CL[CLIENT ACCESS LAYER]
@@ -123,4 +151,3 @@ graph LR
 
     %% Apply styles
     class CL,CI,EP,PG,SC,CP,BS,DP,MC,MO,DD layer;
-```
