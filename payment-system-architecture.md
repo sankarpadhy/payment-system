@@ -1,3 +1,5 @@
+# Payment System Architecture
+
 graph LR
 
 %% Style definitions
