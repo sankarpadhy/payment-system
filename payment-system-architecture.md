@@ -49,15 +49,6 @@ graph LR
         CO[Compliance<br/>PCI/KYC/GDPR]
     end
 
-    %% CORE PAYMENT SERVICES LAYER
-    subgraph CP[CORE PAYMENT SERVICES]
-        direction LR
-        PO[Payment Orchestrator<br/>Spring Cloud/K8s]
-        TP[Transaction Processor<br/>SAGA/ACID]
-        FD[Fraud Detection<br/>ML/Rules Engine]
-        RM[Risk Management<br/>Scoring/Rules]
-    end
-
     %% BUSINESS SERVICES LAYER
     subgraph BS[BUSINESS SERVICES]
         direction LR
@@ -65,6 +56,15 @@ graph LR
         CM[Customer Mgmt<br/>Spring/MongoDB]
         SS[Settlement<br/>Spring Batch]
         RS[Reconciliation<br/>Spark/Reports]
+    end
+
+    %% CORE PAYMENT SERVICES LAYER
+    subgraph CP[CORE PAYMENT SERVICES]
+        direction LR
+        PO[Payment Orchestrator<br/>Spring Cloud/K8s]
+        TP[Transaction Processor<br/>SAGA/ACID]
+        FD[Fraud Detection<br/>ML/Rules Engine]
+        RM[Risk Management<br/>Scoring/Rules]
     end
 
     %% DATA PERSISTENCE LAYER
@@ -108,9 +108,9 @@ graph LR
     CI --> EP
     EP --> PG
     PG --> SC
-    SC --> CP
-    CP --> BS
-    BS --> DP
+    SC --> BS
+    BS --> CP
+    CP --> DP
     DP --> MC
     MC --> MO
     MO --> DD
